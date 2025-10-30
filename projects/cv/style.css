@@ -5,7 +5,15 @@
 }
 
 :root {
-  --color-primary: #2f3749;
+  --color-primary: #1a2332;
+  --color-primary-light: #2d3e50;
+  --color-primary-dark: #0f1823;
+  --color-gradient: linear-gradient(
+    135deg,
+    #1a2332 0%,
+    #2e4766 50%,
+    #395ea3 100%
+  );
   --color-text-light: #fff;
   --color-text-muted: #708090;
   --color-text-dark: #333;
@@ -53,6 +61,19 @@ p {
   padding-bottom: 1.75rem;
   border-bottom: 0.125rem solid var(--color-border);
   flex-shrink: 0;
+  position: relative;
+}
+
+.cv-header::after {
+  content: "";
+  position: absolute;
+  bottom: -0.1875rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 0.25rem;
+  background: var(--color-gradient);
+  border-radius: 0.125rem;
 }
 
 .cv-header h1 {
@@ -61,6 +82,8 @@ p {
   letter-spacing: 0.5rem;
   text-transform: uppercase;
   margin-bottom: 0.35rem;
+  position: relative;
+  display: inline-block;
 }
 
 .cv-subtitle {
@@ -78,7 +101,7 @@ p {
 
 .cv-sidebar {
   flex: 0 0 40%;
-  background-color: var(--color-primary);
+  background: var(--color-gradient);
   color: var(--color-text-light);
   padding: 1.75rem 1.4rem;
 }
@@ -112,11 +135,39 @@ p {
 
 .sidebar-section h2 {
   border-bottom: 0.03125rem solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.sidebar-section h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.375rem;
+  height: 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 0.1875rem;
 }
 
 .main-section h2 {
   color: var(--color-primary);
   border-bottom: 0.0625rem solid var(--color-primary);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.main-section h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.375rem;
+  height: 1.5rem;
+  background: var(--color-gradient);
+  border-radius: 0.1875rem;
 }
 
 .sidebar-section p {
@@ -128,12 +179,23 @@ p {
 
 .sidebar-section ul {
   margin-top: 0.85rem;
-  list-style-position: inside;
+  list-style: none;
+  padding-left: 0;
 }
 
 .sidebar-section li {
   font-family: var(--font-body);
   line-height: 1.75;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.sidebar-section li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
 }
 
 .main-section article {
@@ -150,6 +212,21 @@ p {
   justify-content: space-between;
   align-items: baseline;
   gap: 0.85rem;
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+.job-header::before,
+.education-entry::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  background: var(--color-gradient);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.125rem rgba(57, 94, 163, 0.2);
 }
 
 .education-entry {
@@ -216,6 +293,10 @@ p {
 .reference-entry {
   flex: 1;
   min-width: 0;
+  padding: 1rem;
+  border-left: 0.1875rem solid var(--color-primary-light);
+  background: linear-gradient(to right, rgba(57, 94, 163, 0.03), transparent);
+  border-radius: 0.25rem;
 }
 
 .reference-contact {
@@ -235,7 +316,7 @@ p {
   top: 1rem;
   left: 1rem;
   z-index: 1000;
-  background-color: var(--color-primary);
+  background: var(--color-gradient);
   border: none;
   border-radius: 0.25rem;
   padding: 0.75rem 1rem;
@@ -243,7 +324,7 @@ p {
   flex-direction: row;
   align-items: center;
   gap: 0.75rem;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
@@ -325,6 +406,30 @@ p {
     box-shadow: 0.25rem 0 1rem rgba(0, 0, 0, 0.3);
   }
 
+  .cv-sidebar::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  .cv-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+  }
+
+  .cv-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 0.25rem;
+    transition: background 0.3s ease;
+  }
+
+  .cv-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .cv-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  }
+
   .cv-sidebar.active {
     transform: translateX(0);
   }
@@ -355,6 +460,12 @@ p {
   .sidebar-section h2,
   .main-section h2 {
     font-size: clamp(1.25rem, 5vw, 1.5rem);
+    padding-left: 0.75rem;
+  }
+
+  .sidebar-section h2::before,
+  .main-section h2::before {
+    height: 1.25rem;
   }
 
   .job-header,
@@ -362,6 +473,13 @@ p {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .job-header::before,
+  .education-entry::before {
+    width: 0.3125rem;
+    height: 0.3125rem;
   }
 
   .job-period {
