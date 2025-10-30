@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #2f3749;
+  --color-text-light: #fff;
+  --color-text-muted: #708090;
+  --color-border: #000;
+  --color-job-header: #2e2e2e;
+  --font-heading: Lora, Georgia, serif;
+  --font-body: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --font-meta: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Arial, sans-serif;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-l: 1.75rem;
+  --spacing-xl: 2.5rem;
+  --spacing-main-left: 1rem;
+  --spacing-main-right: 0;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+}
+
+body {
+  background-color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+p {
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.cv-page {
+  width: 210mm;
+  height: 297mm;
+  margin: 1.25rem auto;
+  padding: 0.75rem;
+  border: 0.5rem solid var(--color-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-header {
+  text-align: center;
+  padding-bottom: 1.75rem;
+  border-bottom: 0.125rem solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.cv-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  color: var(--color-primary);
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.cv-subtitle {
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-top: 0.35rem;
+}
+
+.cv-content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.cv-sidebar {
+  flex: 0 0 40%;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 1.75rem;
+  padding-inline: 1.4rem;
+}
+
+.cv-main {
+  flex: 1;
+  padding: 1.75rem 0 1.75rem 1.15rem;
+}
+
+/* Shared section styles */
+.sidebar-section {
+  margin-bottom: 2.2rem;
+}
+
+.main-section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-section:last-child,
+.main-section:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-section h2,
+.main-section h2 {
+  font-size: clamp(1.3rem, 3vw, 1.55rem);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+/* Sidebar-specific styles */
+.sidebar-section h2 {
+  border-bottom: 0.03125rem solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-section p {
+  text-align: justify;
+  font-family: "Nunito", var(--font-meta);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.sidebar-section ul {
+  margin-top: 0.85rem;
+  list-style-position: inside;
+}
+
+.sidebar-section li {
+  font-family: "Nunito", var(--font-meta);
+  line-height: 1.75;
+}
+
+/* Main-specific styles */
+.main-section h2 {
+  color: var(--color-primary);
+  border-bottom: 0.0625rem solid var(--color-primary);
+}
+
+.main-section article {
+  margin-bottom: 1rem;
+}
+
+.main-section article:last-child {
+  margin-bottom: 0;
+}
+
+.job-header,
+.education-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.education-entry {
+  margin-bottom: 0.9rem;
+}
+
+.education-entry:last-of-type {
+  margin-bottom: 0;
+}
+
+.main-section:has(.reference-entry) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.main-section:has(.reference-entry) h2 {
+  flex: 1 1 100%;
+}
+
+.reference-entry {
+  flex: 1;
+  min-width: 0;
+}
+
+.reference-contact {
+  font-family: "Nunito", var(--font-meta);
+  font-size: 0.84rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.reference-contact strong {
+  font-weight: 700;
+}
+
+.job-header h3,
+.cv-main h3 {
+  font-size: clamp(0.92rem, 2vw, 1.02rem);
+  color: var(--color-job-header);
+  font-family: "Poppins", var(--font-meta);
+  font-weight: 600;
+}
+
+.job-header h4,
+.cv-main h4 {
+  font-size: clamp(0.78rem, 1.5vw, 0.85rem);
+  font-weight: bold;
+  color: #000;
+  font-family: "Poppins", var(--font-meta);
+  letter-spacing: 0.045rem;
+}
+
+.cv-main h5 {
+  font-family: "Nunito", var(--font-meta);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #000;
+  margin-top: 0.1rem;
+}
+
+.job-description {
+  font-family: "Nunito", var(--font-meta);
+  line-height: 1.6;
+  font-size: 0.84rem;
+  text-align: justify;
+  font-weight: 625;
+  color: #333;
+  letter-spacing: 0.018rem;
+}
+
+.job-period {
+  font-family: var(--font-meta);
+  font-size: clamp(0.82rem, 1.75vw, 0.88rem);
+  font-weight: 500;
+  letter-spacing: 0.045rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
