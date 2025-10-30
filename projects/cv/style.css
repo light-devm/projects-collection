@@ -16,7 +16,6 @@
   --font-body: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-accent: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-
   --page-width: 210mm;
   --page-height: 297mm;
 }
@@ -228,4 +227,182 @@ p {
 
 .reference-contact strong {
   font-weight: 700;
+}
+
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 0.35rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 1.5rem;
+  height: 0.125rem;
+  background-color: var(--color-text-light);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(0.4375rem) rotate(45deg);
+}
+
+.mobile-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-0.4375rem) rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .cv-page {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    border: none;
+  }
+
+  .cv-header {
+    padding-bottom: 1.5rem;
+    padding-top: 3rem;
+  }
+
+  .cv-header h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+    letter-spacing: 0.2rem;
+  }
+
+  .cv-content {
+    flex-direction: column;
+  }
+
+  .cv-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 20rem;
+    height: 100vh;
+    padding: 4rem 1.5rem 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
+    box-shadow: 0.25rem 0 1rem rgba(0, 0, 0, 0.3);
+  }
+
+  .cv-sidebar.active {
+    transform: translateX(0);
+  }
+
+  .cv-page.sidebar-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+  }
+
+  .cv-main {
+    padding: 1.5rem 0;
+  }
+
+  .sidebar-section {
+    margin-bottom: 2rem;
+  }
+
+  .main-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-section h2,
+  .main-section h2 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+
+  .job-header,
+  .education-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .job-period {
+    font-size: 0.8rem;
+  }
+
+  .main-section:has(.reference-entry) {
+    flex-direction: column;
+  }
+
+  .reference-entry {
+    min-width: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .cv-page {
+    width: 100%;
+    padding: 0.5rem;
+    border-width: 0.375rem;
+  }
+
+  .cv-sidebar {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .cv-main {
+    padding: 1.5rem 0 1.5rem 1rem;
+  }
+}
+
+@media print {
+  .mobile-toggle {
+    display: none;
+  }
+
+  .cv-page {
+    width: var(--page-width);
+    height: var(--page-height);
+    margin: 0;
+    padding: 0.75rem;
+    border: 0.5rem solid var(--color-primary);
+    page-break-after: avoid;
+  }
+
+  .cv-sidebar {
+    position: static;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cv-content {
+    flex-direction: row;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
 }

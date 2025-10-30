@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <button
+      class="mobile-toggle"
+      aria-label="Toggle sidebar"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <main class="cv-page">
       <header class="cv-header">
         <h1>Full Name</h1>
@@ -166,5 +175,26 @@
         </section>
       </div>
     </main>
+
+    <script>
+      const toggle = document.querySelector(".mobile-toggle");
+      const sidebar = document.querySelector(".cv-sidebar");
+      const page = document.querySelector(".cv-page");
+
+      toggle.addEventListener("click", () => {
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", !isExpanded);
+        sidebar.classList.toggle("active");
+        page.classList.toggle("sidebar-active");
+      });
+
+      sidebar.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768 && e.target === sidebar) {
+          toggle.setAttribute("aria-expanded", "false");
+          sidebar.classList.remove("active");
+          page.classList.remove("sidebar-active");
+        }
+      });
+    </script>
   </body>
 </html>
